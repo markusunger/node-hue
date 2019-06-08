@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hue Controller</title>
+  <link rel="stylesheet" href="hue.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap">
+</head>
+<body>
+  <main class="flex-container">
+  <% if (lights) { %>
+    <% Object.keys(lights).forEach(lightKey => { %>
+      <% const light = lights[lightKey] %>
+      <% const on = light.state.on %>
+      <% const h = light.state.hue / 65535 %>
+      <% const s = light.state.sat / 255 %>
+      <% const l = light.state.bri / 255 %>
+      <!-- TODO: convert hsl to rgb/hex for background-color on color circle -->
+      <section class="flex-container light-box">
+        <div class="color" style="background-color: rgb(225, 185, 75)">&nbsp;</div>
+        <div class="name"><%= light.name %></div>
+        <% if (!!on) { %>
+          <button class="onoff-button on" data-id="<%= lightKey %>"></button>
+        <% } else {  %>
+          <button class="onoff-button off" data-id="<%= lightKey %>"></button>
+        <% } %>
+      </section>
+    <% }); %>
+  <% } else { %>
+    <p>Bridge not found. <a href="/">Try again.</a></p>
+  <% } %>
+  </main>
+  <script src="hue.js"></script>
+</body>
+</html>
