@@ -47,13 +47,6 @@ button.off {
   color: rgb(241, 241, 241);
 }
 
-.color {
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid #ddd;
-}
-
 .flex-container {
   display: flex;
   flex-wrap: wrap;

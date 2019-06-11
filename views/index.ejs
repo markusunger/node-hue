@@ -14,12 +14,11 @@
     <% Object.keys(lights).forEach(lightKey => { %>
       <% const light = lights[lightKey] %>
       <% const on = light.state.on %>
-      <% const h = light.state.hue / 65535 %>
-      <% const s = light.state.sat / 255 %>
-      <% const l = light.state.bri / 255 %>
-      <!-- TODO: convert hsl to rgb/hex for background-color on color circle -->
+      <% const x = light.state.xy[0] %>
+      <% const y = light.state.xy[1] %>
+      <% const bri = light.state.bri %>
       <section class="flex-container light-box">
-        <div class="color" style="background-color: rgb(225, 185, 75)">&nbsp;</div>
+        <input type="color" class="light-color" value="<%= xyBriToHex(x, y, bri) %>">
         <div class="name"><%= light.name %></div>
         <% if (!!on) { %>
           <button class="onoff-button on" data-id="<%= lightKey %>"></button>
