@@ -1,5 +1,6 @@
 const express = require('express');
 const hue = require('./src/hue');
+const colors = require('./src/color');
 
 const app = express();
 
@@ -11,8 +12,23 @@ app.get('/', async (req, res) => {
   const lights = await hue.getLights();
   res.render('index', {
     lights,
-    xyBriToHex: hue.xyBriToHex,
+    xyToHex: colors.xyToHex,
   });
+});
+
+app.get('/detail/:id', async (req, res) => {
+  const light = await hue.getLight(req.params.id);
+  if (light) {
+    res.render('detail', {
+      light,
+      xyToHex: colors.xyToHex,
+      HexToXY: colors.HexToXY,
+    });
+  } else {
+    res.render('error', {
+      message: 'That\'s not a valid light',
+    });
+  }
 });
 
 // API routes

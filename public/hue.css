@@ -16,51 +16,60 @@ body {
 }
 
 section {
-  margin: 0.5rem;
-  padding: 0;
-  width: 17rem;
-  background-color: rgb(241, 241, 241);
-  color: rgb(41, 69, 121);
-  border-radius: 1.5rem;
-  box-shadow: 0px 2px 2px rgb(0, 0, 0);
+  width: 20rem;
+  height: 2.5rem;
+  padding: 0.25rem;
+  margin: 0.2rem;
+  background-color: rgb(68, 94, 87);
+  color: #eee;
+  border: 1px solid #fff;
 }
 
-section p {
-  font-size: 0.6rem;
+section a {
+  color: #eee;
+  text-decoration: none;
+}
+
+section a:hover {
+  color: #000;
 }
 
 button {
-  font-family: 'Roboto Slab', serif;
-  font-size: 0.8rem;
-  border: 0;
+  border: 1px solid rgb(143, 143, 143);
   outline: none;
-  box-shadow: inset 0px 0px 5px 3px #342F35;
 }
 
 button.on {
   background-color: rgb(52, 110, 25);
-  color: rgb(241, 241, 241);
 }
 
 button.off {
   background-color: rgb(83, 83, 83);
-  color: rgb(241, 241, 241);
+}
+
+button.onoff-button {
+  width: 4rem;
+  height: 100%;
 }
 
 .flex-container {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .light-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
-.onoff-button {
-  width: 4rem;
-  height: 2rem;
-  border-radius: 1.5rem;
-  background-color: rgb(212, 212, 212);
+.light-color {
+  width: 2rem;
+  height: 100%;
+  border: 1px solid rgb(143, 143, 143);
 }

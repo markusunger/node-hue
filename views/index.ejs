@@ -17,13 +17,15 @@
       <% const x = light.state.xy[0] %>
       <% const y = light.state.xy[1] %>
       <% const bri = light.state.bri %>
-      <section class="flex-container light-box">
-        <input type="color" class="light-color" value="<%= xyBriToHex(x, y, bri) %>">
-        <div class="name"><%= light.name %></div>
+      <section class="light-box">
+        <div class="light-color" data-color="<%= xyToHex(x, y, bri) %>"></div>
+        <div class="name">
+          <a href="/detail/<%= lightKey %>"><%= light.name %></a>
+        </div>
         <% if (!!on) { %>
-          <button class="onoff-button on" data-id="<%= lightKey %>"></button>
+          <button class="onoff-button on" data-id="<%= lightKey %>"><img src="power.png" width="20px" height="20px"></button>
         <% } else {  %>
-          <button class="onoff-button off" data-id="<%= lightKey %>"></button>
+          <button class="onoff-button off" data-id="<%= lightKey %>"><img src="power.png" width="20px" height="20px"></button>
         <% } %>
       </section>
     <% }); %>
