@@ -1,2 +1,43 @@
-/* global document window */
+/* global document fetch */
 
+const heading = document.getElementById('light-heading');
+const lightID = heading.dataset.id;
+const redRange = document.getElementById('color-red');
+const greenRange = document.getElementById('color-green');
+const blueRange = document.getElementById('color-blue');
+const lightColor = document.getElementById('light-color');
+
+function updateColor(r, g, b) {
+  const fetchBody = {
+    r,
+    g,
+    b,
+  };
+
+  fetch(`/light/${lightID}/change`, {
+    method: 'POST',
+    body: JSON.stringify(fetchBody),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then((response) => {
+      if (response) {
+        return response.hex;
+      }
+      return undefined;
+    });
+}
+
+const ranges = Array.from(document.getElementsByClassName('color-range'));
+ranges.forEach((range) => {
+  range.addEventListener('change', function change() {
+    this.setAttribute('value', this.value);
+    const r = redRange.value;
+    const g = greenRange.value;
+    const b = blueRange.value;
+    const newHexColor = updateColor(lightID, r, g, b);
+    lightColor.style.backgroundColor = newHexColor;
+  });
+});

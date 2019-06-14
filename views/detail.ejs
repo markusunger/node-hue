@@ -14,7 +14,7 @@
     <% const x = state.xy[0]; const y = state.xy[1] %>
     <% const [ r, g, b ] = xyToRgb(x, y, state.bri) %>
     <section>
-      <h1><%= light.name %></h1>
+      <h1 id="light-heading" data-id="<%= lightID %>"><%= light.name %></h1>
     </section>
 
     <section class="light-details">
@@ -36,6 +36,6 @@
     </section>
     
   </main>
-  <script src="hue_light.js"></script>
+  <script src="../hue_light.js"></script>
 </body>
 </html>
