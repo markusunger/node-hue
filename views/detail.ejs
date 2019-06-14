@@ -11,16 +11,31 @@
 <body>
   <main class="flex-container">
     <% const state = light.state %>
+    <% const x = state.xy[0]; const y = state.xy[1] %>
+    <% const [ r, g, b ] = xyToRgb(x, y, state.bri) %>
     <section>
       <h1><%= light.name %></h1>
     </section>
 
     <section class="light-details">
-      On <%= state.on %><br>
-      xy <%= state.xy %> 
+      <label for="color-red">Red</label>
+      <input type="range" id="color-red" class="color-range" name="color-red" min="0" max="254" value="<%= r %>">
+      <label for="color-green">Green</label>
+      <input type="range" id="color-green" class="color-range" name="color-green" min="0" max="254" value="<%= g %>">
+      <label for="color-blue">Blue</label>
+      <input type="range" id="color-blue" class="color-range" name="color-blue" min="0" max="254" value="<%= b %>">
+    </section>
+
+    <section>
+      <p>Current light color:</p>
+      <div class="light-color-detail" id="light-color" style="background-color: <%= xyToHex(x, y, state.bri) %>"> </div>
+    </section>
+
+    <section>
+      <a href="/">Return to main page</a>
     </section>
     
   </main>
-  <script src="hue.js"></script>
+  <script src="hue_light.js"></script>
 </body>
 </html>

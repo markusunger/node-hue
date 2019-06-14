@@ -12,6 +12,7 @@ app.get('/', async (req, res) => {
   const lights = await hue.getLights();
   res.render('index', {
     lights,
+    xyToRgb: colors.xyToRgb,
     xyToHex: colors.xyToHex,
   });
 });
@@ -22,7 +23,8 @@ app.get('/detail/:id', async (req, res) => {
     res.render('detail', {
       light,
       xyToHex: colors.xyToHex,
-      HexToXY: colors.HexToXY,
+      xyToRgb: colors.xyToRgb,
+      hexToXY: colors.hexToXY,
     });
   } else {
     res.render('error', {
