@@ -49,7 +49,7 @@ ranges.forEach((range) => {
     const r = redRange.value;
     const g = greenRange.value;
     const b = blueRange.value;
-    const newHexColor = updateColor(lightID, r, g, b);
+    const newHexColor = updateColor(r, g, b);
     lightColor.style.backgroundColor = newHexColor;
   });
 });

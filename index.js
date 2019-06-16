@@ -19,20 +19,14 @@ app.get('/', async (req, res) => {
 
 app.get('/detail/:id', async (req, res) => {
   const light = await hue.getLight(req.params.id);
-  if (light) {
-    res.render('detail', {
-      light,
-      lightID: req.params.id,
-      xyToHex: colors.xyToHex,
-      xyToRgb: colors.xyToRgb,
-      hexToXY: colors.hexToXY,
-      rgbToHex: colors.rgbToHex,
-    });
-  } else {
-    res.render('error', {
-      message: 'That\'s not a valid light',
-    });
-  }
+  res.render('detail', {
+    light,
+    lightID: req.params.id,
+    xyToHex: colors.xyToHex,
+    xyToRgb: colors.xyToRgb,
+    hexToXY: colors.hexToXY,
+    rgbToHex: colors.rgbToHex,
+  });
 });
 
 // API routes
@@ -45,8 +39,9 @@ app.get('/light/:id', async (req, res) => {
 
 app.post('/light/:id/color', async (req, res) => {
   const [newX, newY] = colors.rgbToXY(req.body.r, req.body.g, req.body.b);
-  const newXY = hue.changeLight(req.params.id, { xy: [newX, newY] });
+  const newXY = await hue.changeLight(req.params.id, { xy: [newX, newY] });
   if (newXY) {
+    console.log(newXY);
     res.json({ hex: colors.xyToRgb([...newXY]) });
   } else {
     res.send(null);

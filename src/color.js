@@ -75,9 +75,9 @@ const rgbToXY = function rgbToXY(r, g, b) {
   b /= 254;
 
   // apply gamma corection for more accurate color representation
-  r = (r > 0.04045) ? ((r + 0.055) / (1.0 + 0.055)) ** 2.4 : (r / 12.92);
-  g = (g > 0.04045) ? ((g + 0.055) / (1.0 + 0.055)) ** 2.4 : (g / 12.92);
-  b = (b > 0.04045) ? ((b + 0.055) / (1.0 + 0.055)) ** 2.4 : (b / 12.92);
+  r = (r > 0.04045) ? ((r + 0.055) / (1 + 0.055)) ** 2.4 : (r / 12.92);
+  g = (g > 0.04045) ? ((g + 0.055) / (1 + 0.055)) ** 2.4 : (g / 12.92);
+  b = (b > 0.04045) ? ((b + 0.055) / (1 + 0.055)) ** 2.4 : (b / 12.92);
 
   // create XYZ values
   const X = r * 0.664511 + g * 0.154324 + b * 0.162028;
@@ -87,8 +87,6 @@ const rgbToXY = function rgbToXY(r, g, b) {
   // finally convert to xy values used by lights
   let x = X / (X + Y + Z);
   let y = Y / (X + Y + Z);
-
-  console.log(`Converted from RGB (${r}, ${g}, ${b}) to XY (${x}, ${y})`);
 
   // handle possible edge cases
   if (Number.isNaN(x)) x = 0;
