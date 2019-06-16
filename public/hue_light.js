@@ -7,6 +7,7 @@ const greenRange = document.getElementById('color-green');
 const blueRange = document.getElementById('color-blue');
 const briRange = document.getElementById('brightness');
 const lightColor = document.getElementById('light-color');
+const onOffButton = document.getElementById('onoff-button');
 
 function updateColor(r, g, b) {
   const fetchBody = {
@@ -56,4 +57,18 @@ ranges.forEach((range) => {
 briRange.addEventListener('change', function change() {
   this.setAttribute('value', this.value);
   updateBrightness(this.value);
-})
+});
+
+onOffButton.addEventListener('click', () => {
+  fetch(`/light/${lightID}`)
+    .then(res => res.text())
+    .then(() => {
+      if (onOffButton.classList.contains('on')) {
+        onOffButton.classList.remove('on');
+        onOffButton.classList.add('off');
+      } else {
+        onOffButton.classList.remove('off');
+        onOffButton.classList.add('on');
+      }
+    });
+});

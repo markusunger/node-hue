@@ -15,6 +15,11 @@
     <% const [ r, g, b ] = xyToRgb(x, y, state.bri) %>
     <section>
       <h1 id="light-heading" data-id="<%= lightID %>"><%= light.name %></h1>
+       <% if (!!state.on) { %>
+          <button class="onoff-button on" id="onoff-button"><img src="../power.png" width="20px" height="20px"></button>
+        <% } else {  %>
+          <button class="onoff-button off" id="onoff-button"><img src="../power.png" width="20px" height="20px"></button>
+        <% } %>
     </section>
 
     <section class="light-details">

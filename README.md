@@ -5,6 +5,8 @@ read all light info and provide a simple interface for turning specific lights o
 
 ## TODO
 
-- correctly displaying the current light color
-- modal popup for changing hue/saturation/brightness
-- make it look fancier
+- fix on/off button placmeent on detail page
+- fix color display after changing on detail page
+- fix rgb to xy conversion
+- make it look a bit fancier
+- clean up code
