@@ -68,13 +68,7 @@ async function setLightOnOff(id, value) {
 }
 
 async function changeLight(id, changeBody) {
-  const response = await queryAPI(`lights/${id}/state`, 'PUT', changeBody);
-  // if (response[0].success) {
-  //   const success = response[0].success;
-  //   console.log(success);
-  //   return Object.values(success)[0];
-  // }
-  // return undefined;
+  await queryAPI(`lights/${id}/state`, 'PUT', changeBody);
 }
 
 module.exports = {

@@ -59,6 +59,7 @@ const rgbToHex = function rgbToHex(r, g, b) {
 };
 
 const xyToHex = function xyToHex(x, y, bri) {
+  console.log(`x is ${x} (${typeof x}), y is ${y} (${typeof y}), bri is ${bri} (${typeof bri})`);
   // x, y expected to be between [0, 1]
   // bri is the 'brightness' property of the light, between [0, 254]
   // returns hex string

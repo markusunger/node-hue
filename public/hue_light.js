@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 /* global document fetch */
 
 const heading = document.getElementById('light-heading');
@@ -23,13 +24,8 @@ function updateColor(r, g, b) {
       'Content-Type': 'application/json',
     },
   })
-    .then(res => res.json())
-    .then((response) => {
-      if (response) {
-        return response.hex;
-      }
-      return undefined;
-    });
+    .then(res => res.text())
+    .then(newHex => lightColor.style.backgroundColor = newHex);
 }
 
 function updateBrightness(bri) {
@@ -49,8 +45,7 @@ ranges.forEach((range) => {
     const r = redRange.value;
     const g = greenRange.value;
     const b = blueRange.value;
-    const newHexColor = updateColor(r, g, b);
-    lightColor.style.backgroundColor = newHexColor;
+    updateColor(r, g, b);
   });
 });
 

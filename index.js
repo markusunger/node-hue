@@ -39,13 +39,11 @@ app.get('/light/:id', async (req, res) => {
 
 app.post('/light/:id/color', async (req, res) => {
   const [newX, newY] = colors.rgbToXY(req.body.r, req.body.g, req.body.b);
-  const newXY = await hue.changeLight(req.params.id, { xy: [newX, newY] });
-  if (newXY) {
-    console.log(newXY);
-    res.json({ hex: colors.xyToRgb([...newXY]) });
-  } else {
-    res.send(null);
-  }
+  await hue.changeLight(req.params.id, { xy: [newX, newY] });
+  const light = await hue.getLight(req.params.id);
+  const [x, y] = Object.values(light.state.xy);
+  const newHex = colors.xyToHex(x, y, light.state.bri);
+  res.end(newHex);
 });
 
 app.post('/light/:id/brightness', async (req, res) => {
