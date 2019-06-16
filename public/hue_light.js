@@ -5,6 +5,7 @@ const lightID = heading.dataset.id;
 const redRange = document.getElementById('color-red');
 const greenRange = document.getElementById('color-green');
 const blueRange = document.getElementById('color-blue');
+const briRange = document.getElementById('brightness');
 const lightColor = document.getElementById('light-color');
 
 function updateColor(r, g, b) {
@@ -14,7 +15,7 @@ function updateColor(r, g, b) {
     b,
   };
 
-  fetch(`/light/${lightID}/change`, {
+  fetch(`/light/${lightID}/color`, {
     method: 'POST',
     body: JSON.stringify(fetchBody),
     headers: {
@@ -30,6 +31,16 @@ function updateColor(r, g, b) {
     });
 }
 
+function updateBrightness(bri) {
+  fetch(`/light/${lightID}/brightness`, {
+    method: 'POST',
+    body: JSON.stringify({ bri }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
 const ranges = Array.from(document.getElementsByClassName('color-range'));
 ranges.forEach((range) => {
   range.addEventListener('change', function change() {
@@ -41,3 +52,8 @@ ranges.forEach((range) => {
     lightColor.style.backgroundColor = newHexColor;
   });
 });
+
+briRange.addEventListener('change', function change() {
+  this.setAttribute('value', this.value);
+  updateBrightness(this.value);
+})

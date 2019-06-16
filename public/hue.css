@@ -50,10 +50,14 @@ button.onoff-button {
   height: 100%;
 }
 
+label {
+  display: block;
+}
+
 input[type=range] {
   background: transparent;
   -webkit-appearance: none;
-  width: 100%;
+  width: 90%;
   margin: 13.8px 0;
 }
 input[type=range]:focus {

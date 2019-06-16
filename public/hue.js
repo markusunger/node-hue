@@ -7,7 +7,7 @@ const colors = Array.from(document.getElementsByClassName('light-color'));
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     fetch(`/light/${button.dataset.id}`)
-      .then(res => res.json())
+      .then(res => res.text())
       .then(() => {
         if (button.classList.contains('on')) {
           button.classList.remove('on');
